@@ -1,0 +1,47 @@
+name: "Auto Assign Reviewers"
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const files = await github.paginate(
+              github.rest.pulls.listFiles,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number
+              }
+            );
+
+            const reviewers = new Set();
+
+            for (const f of files) {
+              if (f.filename.startsWith("backend/")) {
+                reviewers.add("backend-reviewer");
+              }
+              if (f.filename.startsWith("frontend/")) {
+                reviewers.add("frontend-reviewer");
+              }
+              if (f.filename.includes("Dockerfile") || f.filename.includes(".yml")) {
+                reviewers.add("devops-reviewer");
+              }
+            }
+
+            if (reviewers.size > 0) {
+              await github.rest.pulls.requestReviewers({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                reviewers: [...reviewers]
+              });
+            }

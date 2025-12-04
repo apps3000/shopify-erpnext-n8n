@@ -1,0 +1,55 @@
+name: "🏛 Architecture / Technical Design"
+description: "Plan or propose structural or architectural changes"
+labels: ["architecture"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: "Title"
+      placeholder: "Example: 'Introduce event-driven architecture'"
+    validations:
+      required: true
+
+  - type: textarea
+    id: overview
+    attributes:
+      label: "Overview"
+      placeholder: "Describe what needs to be designed or changed…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: "Why?"
+      placeholder: "Explain why this change is necessary, including problems or goals"
+    validations:
+      required: true
+
+  - type: textarea
+    id: design
+    attributes:
+      label: "Proposed Design"
+      placeholder: |
+        - Event dispatcher module
+        - Queue system
+        - Database schema changes
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: "Potential Impact"
+      placeholder: "Breaking changes, deployment notes, backward compatibility…"
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: "Success Criteria"
+      placeholder: |
+        - All parts of the system integrated
+        - Architecture doc updated
+        - Verified in staging
+    validations:
+      required: true

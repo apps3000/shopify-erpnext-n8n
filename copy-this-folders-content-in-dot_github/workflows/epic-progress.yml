@@ -1,0 +1,50 @@
+name: "Epic Progress Updater"
+on:
+  pull_request:
+    types: [opened, edited, synchronize, closed]
+
+permissions:
+  issues: write
+  pull-requests: read
+
+jobs:
+  update-epic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const body = pr.body || "";
+            const closesRegex = /(close[sd]?|fixe?[sd]?|resolve[sd]?)\s+#(\d+)/gi;
+            const matches = [...body.matchAll(closesRegex)];
+
+            if (matches.length === 0) return;
+
+            const childIssues = matches.map(m => Number(m[2]));
+
+            for (const issueNum of childIssues) {
+              const issue = await github.rest.issues.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNum
+              });
+
+              const body = issue.data.body || "";
+              const epicRegex = /part of[: ]+#(\d+)/i;
+              const epicMatch = body.match(epicRegex);
+
+              if (!epicMatch) continue;
+
+              const epic_number = Number(epicMatch[1]);
+
+              // Update Epic Progress Comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: epic_number,
+                body: `Child issue #${issueNum} was closed via PR #${pr.number}.`
+              });
+            }

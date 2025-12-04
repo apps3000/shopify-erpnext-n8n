@@ -1,0 +1,47 @@
+name: "📘 Epic"
+description: "Large feature or project that contains multiple tasks"
+labels: ["epic"]
+body:
+  - type: input
+    id: epic_title
+    attributes:
+      label: "Epic Title"
+      placeholder: "Example: 'Redesign onboarding experience'"
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: "Goal"
+      placeholder: "Describe what this epic is intended to achieve…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: tasks
+    attributes:
+      label: "Planned Sub-Issues"
+      placeholder: |
+        - Create new UI components
+        - Build tracking events
+        - Deploy AB testing
+    validations:
+      required: true
+
+  - type: textarea
+    id: definition_done
+    attributes:
+      label: "Definition of Done"
+      placeholder: |
+        - All sub-tasks are completed
+        - QA approved
+        - Released to production
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Additional Notes"
+      placeholder: "Dependencies, timelines, stakeholders, references…"

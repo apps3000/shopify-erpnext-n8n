@@ -1,0 +1,27 @@
+[
+    { "name": "epic", "color": "0052cc", "description": "High-level project goal" },
+    { "name": "feature", "color": "0e8a16", "description": "User-facing functionality" },
+    { "name": "task", "color": "1d76db", "description": "Small unit of work" },
+    { "name": "child: task", "color": "cccccc", "description": "Linked task-level issue" },
+    { "name": "child: feature", "color": "cccccc", "description": "Linked feature-level issue" },
+    
+    { "name": "status: backlog", "color": "cfd3d7", "description": "Needs to be picked for development" },
+    { "name": "status: to do", "color": "d93f0b", "description": "Ready for development" },
+    { "name": "status: in progress", "color": "fbca04", "description": "Someone is working on it" },
+    { "name": "status: in review", "color": "1d76db", "description": "PR created for review" },
+    { "name": "status: changes requested", "color": "cfd3d7", "description": "Needs changes after review" },
+    { "name": "status: testing", "color": "d93f0b", "description": "Needs to be tested by user" },
+    { "name": "status: blocked", "color": "fbca04", "description": "Blocked by other issues" },
+    { "name": "status: on hold", "color": "fbca04", "description": "Paused" },
+    { "name": "status: done", "color": "1d76db", "description": "Completed" }
+
+    { "name": "critical", "color": "b60205", "description": "Urgent issue – production blocker" },
+    { "name": "high", "color": "d93f0b", "description": "High priority" },
+    { "name": "medium", "color": "fbca04", "description": "Medium priority" },
+    { "name": "low", "color": "0e8a16", "description": "Low priority" },
+
+    { "name": "backend", "color": "1d76db", "description": "Everything backend-related" },
+    { "name": "frontend", "color": "fbca04", "description": "Everything fronted-related" },
+    { "name": "fullstack", "color": "0e8a16", "description": "Systemwide" },
+  ]
+

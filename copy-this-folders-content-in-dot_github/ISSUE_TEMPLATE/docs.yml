@@ -1,0 +1,32 @@
+name: "📚 Documentation"
+description: "Tasks related to documentation, spec writing, READMEs, guides, etc."
+labels: ["documentation", "docs"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: "Title"
+      placeholder: "Example: \"Add API usage guide\""
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "What needs documentation?"
+      placeholder: "Which part of the project needs docs / what specification"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: "Scope / Audience"
+      placeholder: "End‑users, developers, internal team, onboarding, onboarding guide, etc."
+  - type: textarea
+    id: done_when
+    attributes:
+      label: "Definition of Done"
+      placeholder: |
+        - Draft written  
+        - Reviewed by at least one teammate  
+        - Checked for typos / formatting  
+        - Merged into main docs folder / README updated

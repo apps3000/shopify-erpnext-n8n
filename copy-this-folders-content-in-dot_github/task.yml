@@ -1,0 +1,37 @@
+name: "🛠 Task"
+description: "A single unit of work — can be dev, testing, docs, etc."
+labels: ["task"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: "Title"
+      placeholder: "Example: \"Refactor user service API\""
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      placeholder: "What needs to be done?"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: "Area / Scope"
+      options:
+        - "Frontend"
+        - "Backend"
+        - "Fullstack"
+        - "Infrastructure"
+        - "Documentation"
+        - "CI / DevOps"
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "Acceptance Criteria / Definition of Done"
+      placeholder: |
+        - Code builds and tests pass  
+        - New API is documented  
+        - Feature tested manually

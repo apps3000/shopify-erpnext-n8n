@@ -1,0 +1,50 @@
+name: "✅ QA / Test Report"
+description: "Report for QA tasks, testing results or manual test cases"
+labels: ["qa", "testing"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: "Title"
+      placeholder: "Example: \"Test checkout flow on mobile\""
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "What is being tested or verified?"
+      placeholder: "What feature or area is being tested?"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Test Steps / Scenario"
+      placeholder: |
+        1. Go to homepage  
+        2. Add item to cart  
+        3. Go to checkout on mobile device  
+        4. Submit payment  
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: "Observed Results"
+      placeholder: "What happened after executing the test steps"
+  - type: dropdown
+    id: status
+    attributes:
+      label: "Test Status"
+      options:
+        - "Pass"
+        - "Fail"
+        - "Blocked"
+        - "Needs follow-up"
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Additional Notes / Comments"
+      placeholder: "Logs, screenshots, environment info, suggestions…"

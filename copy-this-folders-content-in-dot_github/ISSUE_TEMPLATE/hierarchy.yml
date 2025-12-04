@@ -1,0 +1,15 @@
+# Hierarchy Reference (informational only)
+# Epic > Feature > Task
+
+levels:
+  - name: Epic
+    label: "epic"
+    contains: ["feature"]
+
+  - name: Feature
+    label: "feature"
+    contains: ["task"]
+
+  - name: Task
+    label: "task"
+    terminal: true

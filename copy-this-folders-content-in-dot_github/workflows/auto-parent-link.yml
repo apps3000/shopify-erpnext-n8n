@@ -1,0 +1,46 @@
+name: "Auto Parent Linking"
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  link-parent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || "";
+            const parentRegex = /part of[: ]+#(\d+)/i;
+            const match = body.match(parentRegex);
+
+            if (!match) return;
+
+            const parent_number = Number(match[1]);
+
+            // Add backlink comment on the parent
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: parent_number,
+              body: `Linked child issue: #${issue.number}`
+            });
+
+            // Add dynamic label to child
+            let childLabel = "child: task";  // default
+
+            if (body.includes("type: feature") || issue.title.toLowerCase().includes("feature")) {
+              childLabel = "child: feature";
+            }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              labels: [childLabel]
+            });
